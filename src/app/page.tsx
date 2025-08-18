@@ -1,103 +1,112 @@
+"use client";
+
 import Image from "next/image";
+import { useState, useEffect } from "react";
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [showScroll, setShowScroll] = useState(true);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 80) {
+        setShowScroll(false);
+      } else {
+        setShowScroll(true);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  return (
+    <div>
+      <div className="container">
+        <Image
+          className="background"
+          src="/background.png"
+          alt="background"
+          layout="responsive"
+          width={100}
+          height={200}
+        />
+        <div className="textContainer">
+          <div className="glowEffect" />
+          <h2>Save the Date</h2>
+          <h3>October 15th</h3>
+          <h4>2026</h4>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </div>
+      <div className="infoContainer">
+        <div className="info">
+          <h2
+            style={{
+              textAlign: "center",
+              fontSize: "6vw",
+              color: "rgb(173, 211, 193)",
+            }}
+          >
+            Josh & Lina&apos;s
+            <br />
+            Wedding
+          </h2>
+          <br />
+          <br />
+          <h2>The Details</h2>
+          <p>
+            We are so excited for you to join us! To make sure everyone can
+            celebrate with us, please book the dates October 14th, 15th, and
+            16th, 2026 off! We have booked accommodation at the venue for two
+            nights.
+          </p>
+          <br />
+          <h4>The 14th</h4>
+          <p>
+            Arrive at the venue, see your the cabin where you will be staying
+            and just chill out, enjoy the ammenities and the view. No need to
+            stress because you will be already be on site for the big day!
+          </p>
+          <br />
+          <h4>The 15th</h4>
+          <p>
+            This is the big day! The wedding ceremony will be held in the
+            afternoon so you have plenty of time to get ready. After the
+            ceremony its party time, accompanied by music, food, and drinks,
+            whenever you feel like crashing just pop off to your cabin.
+          </p>
+          <br />
+          <h4>The 16th</h4>
+          <p>
+            Enjoy a little sleep in after the big night, jump in the sauna, or
+            hop in the woodfired hottubs. After checkout we will all go have
+            brunch!
+          </p>
+          <br />
+          <h2>Invitations & Cost</h2>
+          <p>
+            Formal invitations with all the key details, including times and
+            locations will be sent out early next year. We snagged a great deal
+            in the heart of Margeret River for our venue, including the two
+            night accommodation. To cover the cost of accommodation we have
+            split up the cost between the adults, the cost per adult is $400, so
+            start saving, more info on payment will be in the invitations!
+          </p>
+          <br />
+          <br />
+          <p style={{ fontStyle: "italic" }}>
+            Any concerns or questions
+            <br /> Please message Joshua on Messenger or SMS
+          </p>
+        </div>
+      </div>
+      {showScroll && (
+        <div className="scrollContainer">
+          <p className="scrollText">Scroll Down</p>
+        </div>
+      )}
     </div>
   );
 }
