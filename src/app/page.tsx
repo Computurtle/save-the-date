@@ -5,8 +5,14 @@ import { useState, useEffect } from "react";
 
 export default function Home() {
   const [showScroll, setShowScroll] = useState(true);
+  const [isMobile, setIsMobile] = useState<boolean | null>(null);
 
   useEffect(() => {
+    const userAgent =
+      typeof window.navigator === "undefined" ? "" : navigator.userAgent;
+    const mobile = /Mobi/i.test(userAgent);
+    setIsMobile(mobile);
+
     const handleScroll = () => {
       if (window.scrollY > 80) {
         setShowScroll(false);
@@ -21,6 +27,33 @@ export default function Home() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  if (isMobile === null) {
+    // On the server or during the initial client render, we don't know yet.
+    // Returning null prevents a flash of incorrect content.
+    return null;
+  }
+
+  if (!isMobile) {
+    return (
+      <div
+        style={{
+          backgroundColor: "white",
+          color: "black",
+          height: "100vh",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          fontFamily: "sans-serif",
+          fontSize: "2rem",
+          textAlign: "center",
+          padding: "1rem",
+        }}
+      >
+        <p>Open on your phone :)</p>
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -65,9 +98,9 @@ export default function Home() {
           <br />
           <h4>The 14th</h4>
           <p>
-            Arrive at the venue, see your the cabin where you will be staying
-            and just chill out, enjoy the ammenities and the view. No need to
-            stress because you will be already be on site for the big day!
+            Arrive at the venue, see the cabin where you will be staying, and
+            just chill out, enjoy the ammenities and the view. No need to stress
+            because you will already be on site for the big day!
           </p>
           <br />
           <h4>The 15th</h4>
@@ -97,8 +130,7 @@ export default function Home() {
           <br />
           <br />
           <p style={{ fontStyle: "italic" }}>
-            Any concerns or questions
-            <br /> Please message Joshua on Messenger or SMS
+            Any questions message Josh on Messenger or SMS
           </p>
         </div>
       </div>
