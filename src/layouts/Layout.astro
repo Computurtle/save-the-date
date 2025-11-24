@@ -1,0 +1,42 @@
+---
+import '../styles/vars.css';
+import '../styles/base.css';
+import '../styles/utilities.css';
+import Background from '../components/Background.astro';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Save The Date</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Dancing+Script:wght@400;500;600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+	</head>
+	<body>
+		<Background />
+		<main class="main-content">
+			<slot />
+		</main>
+	</body>
+</html>
+
+<style>
+	html,
+	body {
+		margin: 0;
+		width: 100%;
+	}
+
+	.main-content {
+		width: 100%;
+		max-width: var(--max-width-content);
+		margin: 0 auto;
+		padding: 0 var(--space-6); /* Ensure padding on small screens */
+		padding-top: 8rem; /* Account for fixed header */
+	}
+</style>

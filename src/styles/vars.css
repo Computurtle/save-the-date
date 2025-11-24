@@ -1,0 +1,70 @@
+/* CSS Variables for the wedding site */
+:root {
+  /* Colors */
+  --color-primary: #9b87d5; /* lavender purple */
+  --color-secondary: #8ba888; /* sage green */
+  --color-text: #4a4a4a; /* Softer dark gray */
+  --color-text-light: #8c8c8c;
+  --color-bg: #fdfbf7; /* Warm cream */
+  --color-bg-card: #ffffff;
+  --color-border: #efece6;
+
+  /* Typography */
+  --font-heading: "Cormorant Garamond", serif;
+  --font-logo: "Dancing Script", cursive;
+  --font-body: "Outfit", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+  --font-size-5xl: 3rem;
+  --font-size-6xl: 3.75rem;
+  --font-size-7xl: 4.5rem;
+  --font-size-8xl: 6rem;
+  --font-size-9xl: 8rem;
+  --font-size-10xl: 10rem;
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.625;
+
+  /* Spacing */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+
+  /* Layout */
+  --max-width-sm: 640px;
+  --max-width-md: 768px;
+  --max-width-lg: 1024px;
+  --max-width-xl: 1280px;
+  --max-width-content: 1536px; /* 120% of xl */
+
+  /* Border radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(155, 135, 213, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(155, 135, 213, 0.1),
+    0 2px 4px -1px rgba(155, 135, 213, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(155, 135, 213, 0.1),
+    0 4px 6px -2px rgba(155, 135, 213, 0.05);
+  --shadow-card: 0 20px 25px -5px rgba(0, 0, 0, 0.02),
+    0 10px 10px -5px rgba(0, 0, 0, 0.01);
+}
