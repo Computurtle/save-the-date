@@ -1,0 +1,251 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+
+const schedule = [
+  {
+    day: "Day 1",
+    date: "Wednesday, Oct 14th",
+    events: [
+      { time: "1:00 PM", title: "Arrival", description: "Arrive at Chambre Estate, unpack, and relax.", isFixed: true },
+      { time: "Afternoon", title: "Decorating & Chill", description: "Help with some light decorating and enjoy the amenities.", isFixed: false },
+      { time: "6:00 PM", title: "Pizza Night", description: "Pizza dinner and games.", isFixed: true },
+    ]
+  },
+  {
+    day: "Day 2",
+    date: "Thursday, Oct 15th",
+    events: [
+      { time: "9:00 AM", title: "Glam Squad", description: "Makeup and Hair arrives.", isFixed: true },
+      { time: "Morning", title: "Getting Ready", description: "Get dressed and ready for the big moment.", isFixed: false },
+      { time: "Early PM", title: "Setup", description: "Final touches on the ceremony area.", isFixed: false },
+      { time: "3:45 PM", title: "Take Your Seats", description: "Please be seated for the ceremony.", isFixed: true },
+      { time: "4:00 PM", title: "Ceremony", description: "The Wedding Ceremony starts.", isFixed: true },
+      { time: "4:45 PM", title: "Photos & Snacks", description: "Bride and Groom photos. Guests enjoy snacks and drinks.", isFixed: true },
+      { time: "5:30 PM", title: "Reception", description: "Party starts! Authentic Indian food and drinks.", isFixed: true },
+    ]
+  },
+  {
+    day: "Day 3",
+    date: "Friday, Oct 16th",
+    events: [
+      { time: "Morning", title: "Sleep In", description: "Recover from the night before.", isFixed: false },
+      { time: "11:00 AM", title: "Pack Up", description: "Get ready to head out.", isFixed: false },
+      { time: "12:00 PM", title: "Checkout", description: "Time to say goodbye.", isFixed: true },
+    ]
+  }
+];
+
+const packingList = [
+  "Swimmers for the pool",
+  "Warm jacket for the evening",
+  "Comfortable shoes",
+  "Your party outfit",
+  "Drinks for the room (we provide wedding drinks)"
+];
+---
+
+<Layout>
+  <Header />
+  
+  <div class="page-container">
+    <h1 class="page-title">The Schedule</h1>
+    
+    <div class="schedule-grid">
+      {schedule.map((day) => (
+        <div class="glass-card day-card">
+          <div class="day-header">
+            <h2 class="day-name">{day.day}</h2>
+            <span class="day-date">{day.date}</span>
+          </div>
+          
+          <div class="timeline">
+            {day.events.map((event) => (
+              <div class={`event ${event.isFixed ? 'fixed' : 'loose'}`}>
+                <div class="event-time">{event.time}</div>
+                <div class="event-details">
+                  <h3 class="event-title">{event.title}</h3>
+                  <p class="event-desc">{event.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- What to Bring Section -->
+    <div class="glass-card packing-card">
+      <h2>What to Bring</h2>
+      <ul class="packing-list">
+        {packingList.map(item => (
+          <li>{item}</li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .page-container {
+    max-width: var(--max-width-lg);
+    margin: 0 auto;
+    padding-bottom: var(--space-16); /* Increased bottom padding */
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-12); /* Increased gap between sections */
+  }
+
+  .page-title {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-5xl);
+    color: var(--color-primary);
+    text-align: center;
+    margin-bottom: var(--space-8); /* Increased margin below title */
+  }
+
+  .schedule-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-8); /* Increased gap between cards */
+  }
+
+  /* Glass Card */
+  .glass-card {
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: var(--radius-xl);
+    padding: var(--space-6);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .day-header {
+    text-align: center;
+    margin-bottom: var(--space-6);
+    padding-bottom: var(--space-4);
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+  }
+
+  .day-name {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-3xl);
+    color: var(--color-secondary);
+    margin-bottom: var(--space-1);
+  }
+
+  .day-date {
+    font-family: var(--font-body);
+    font-size: var(--font-size-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-text-light);
+  }
+
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .event {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: var(--space-4);
+    align-items: baseline;
+  }
+
+  .event-time {
+    font-family: var(--font-body);
+    font-size: var(--font-size-sm);
+    text-align: right;
+    color: var(--color-text-light);
+    font-weight: 500;
+  }
+
+  .event-title {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--space-1);
+    line-height: 1.2;
+  }
+
+  .event-desc {
+    font-size: var(--font-size-sm);
+    color: var(--color-text);
+    opacity: 0.9;
+  }
+
+  /* Fixed vs Loose Styling */
+  .event.fixed .event-time {
+    color: var(--color-primary);
+    font-weight: 700;
+  }
+
+  .event.fixed .event-title {
+    color: var(--color-text);
+    font-weight: 600;
+  }
+
+  .event.loose .event-time {
+    opacity: 0.6;
+  }
+
+  .event.loose .event-title {
+    color: var(--color-text-light);
+    font-weight: 400;
+  }
+
+  .event.loose .event-desc {
+    color: var(--color-text-light);
+  }
+
+  /* Packing List */
+  .packing-card {
+    max-width: var(--max-width-md);
+    margin: 0 auto;
+    width: 100%;
+    text-align: center;
+  }
+
+  .packing-card h2 {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-3xl);
+    color: var(--color-secondary);
+    margin-bottom: var(--space-4);
+  }
+
+  .packing-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .packing-list li {
+    font-size: var(--font-size-lg);
+    color: var(--color-text);
+  }
+
+  .packing-list li::before {
+    content: "•";
+    color: var(--color-primary);
+    margin-right: var(--space-2);
+  }
+
+  @media (max-width: 640px) {
+    .event {
+      grid-template-columns: 1fr;
+      gap: var(--space-1);
+    }
+    
+    .event-time {
+      text-align: left;
+      font-size: var(--font-size-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+  }
+</style>

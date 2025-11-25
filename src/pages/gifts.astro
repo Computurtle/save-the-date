@@ -1,0 +1,255 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+
+const giftIdeas = [
+  {
+    title: "KitchenAid Stand Mixer",
+    price: "$$$",
+    description: "For all the baking we plan to do! In Pistachio or Cream color.",
+    link: "https://www.kitchenaid.com.au/",
+    image: "https://images.unsplash.com/photo-1594385208974-2e75f8d7bb48?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    title: "Le Creuset Dutch Oven",
+    price: "$$$",
+    description: "A forever pot for Sunday roasts. We love the Sage Green.",
+    link: "https://www.lecreuset.com.au/",
+    image: "https://images.unsplash.com/photo-1585325701165-351af916e581?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    title: "Aesop Hand Wash Set",
+    price: "$",
+    description: "A little luxury for the bathroom.",
+    link: "https://www.aesop.com/au/",
+    image: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    title: "Coffee Table Books",
+    price: "$",
+    description: "Anything about architecture, travel, or cooking.",
+    link: "https://www.booktopia.com.au/",
+    image: "https://images.unsplash.com/photo-1544967082-d9d3fdd01a1d?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    title: "Linen Bedding Set",
+    price: "$$",
+    description: "Queen size in neutral tones (white, beige, or soft grey).",
+    link: "https://www.bedthreads.com.au/",
+    image: "https://images.unsplash.com/photo-1616627547584-bf28cee262db?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    title: "Ceramic Dinner Set",
+    price: "$$",
+    description: "Handmade style plates and bowls for hosting dinners.",
+    link: "https://www.mudaustralia.com/",
+    image: "https://images.unsplash.com/photo-1610701596007-11502861dcfa?auto=format&fit=crop&w=800&q=80"
+  }
+];
+---
+
+<Layout>
+  <Header />
+  
+  <div class="page-container">
+    <h1 class="page-title">Gifts & Registry</h1>
+    
+    <div class="intro-card glass-card">
+      <p class="intro-text">
+        Your presence at our wedding is the greatest gift of all! 
+        However, if you would like to give something, we have put together a few suggestions below.
+      </p>
+      <p class="intro-subtext">
+        These are just ideas to help you out. We would also love a contribution to our honeymoon fund, 
+        something handmade, or a gift you know is "so us".
+      </p>
+    </div>
+
+    <div class="gifts-grid">
+      {giftIdeas.map((gift) => (
+        <a href={gift.link} target="_blank" rel="noopener noreferrer" class="gift-card glass-card">
+          <div class="gift-image-container">
+            <img src={gift.image} alt={gift.title} class="gift-image" />
+            <div class="price-tag">{gift.price}</div>
+          </div>
+          <div class="gift-content">
+            <h3>{gift.title}</h3>
+            <p>{gift.description}</p>
+            <span class="shop-link">Find Online &rarr;</span>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <div class="wishing-well glass-card">
+      <h3>Honeymoon Fund</h3>
+      <p>
+        If you prefer to contribute to our future adventures instead, 
+        we will have a wishing well available on the day.
+      </p>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .page-container {
+    max-width: var(--max-width-xl);
+    margin: 0 auto;
+    padding-bottom: var(--space-16);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-12);
+  }
+
+  .page-title {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-5xl);
+    color: var(--color-primary);
+    text-align: center;
+    margin-bottom: var(--space-4);
+  }
+
+  /* Glass Card Base */
+  .glass-card {
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+  }
+
+  /* Intro Section */
+  .intro-card {
+    padding: var(--space-8);
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .intro-text {
+    font-size: var(--font-size-xl);
+    color: var(--color-text);
+    margin-bottom: var(--space-4);
+    line-height: 1.6;
+  }
+
+  .intro-subtext {
+    font-size: var(--font-size-base);
+    color: var(--color-text-light);
+    font-style: italic;
+  }
+
+  /* Grid Layout */
+  .gifts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--space-8);
+  }
+
+  /* Gift Card */
+  .gift-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+  }
+
+  .gift-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-xl);
+    background: rgba(255, 255, 255, 0.6);
+  }
+
+  .gift-image-container {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+  }
+
+  .gift-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .gift-card:hover .gift-image {
+    transform: scale(1.05);
+  }
+
+  .price-tag {
+    position: absolute;
+    top: var(--space-4);
+    right: var(--space-4);
+    background: rgba(255, 255, 255, 0.9);
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-full);
+    font-weight: bold;
+    color: var(--color-primary);
+    font-size: var(--font-size-sm);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .gift-content {
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  .gift-content h3 {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-xl);
+    color: var(--color-secondary);
+    margin-bottom: var(--space-2);
+  }
+
+  .gift-content p {
+    font-size: var(--font-size-base);
+    color: var(--color-text);
+    margin-bottom: var(--space-4);
+    flex-grow: 1;
+  }
+
+  .shop-link {
+    font-size: var(--font-size-sm);
+    color: var(--color-primary);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* Wishing Well */
+  .wishing-well {
+    padding: var(--space-8);
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .wishing-well h3 {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-2xl);
+    color: var(--color-primary);
+    margin-bottom: var(--space-4);
+  }
+
+  .wishing-well p {
+    color: var(--color-text);
+    font-size: var(--font-size-lg);
+  }
+
+  @media (max-width: 640px) {
+    .gifts-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .page-title {
+      font-size: var(--font-size-4xl);
+    }
+  }
+</style>

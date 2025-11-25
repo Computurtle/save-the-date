@@ -30,18 +30,40 @@ import Layout from '../layouts/Layout.astro';
         We are so excited to celebrate our special weekend with our favourite people. 
         Get ready for good food, great vibes, and a little bit of magic.
       </p>
+      
+      <div class="countdown-container">
+        <span id="days-count" class="days-number">--</span>
+        <span class="days-label">days to go</span>
+      </div>
     </div>
 
     <!-- 4. Quick Links Grid -->
     <div class="grid-links">
-      <a href="/itinerary" class="glass-card link-card">
-        <h3>The Plan</h3>
-        <p>See what's happening &rarr;</p>
+      <a href="/schedule" class="glass-card link-card">
+        <h3>The Schedule</h3>
+        <p>See the plan for the 3 days &rarr;</p>
       </a>
       <a href="/location" class="glass-card link-card">
-        <h3>The Place</h3>
-        <p>Chambre Estate &rarr;</p>
+        <h3>Location</h3>
+        <p>Map & directions &rarr;</p>
       </a>
+      <a href="/cost" class="glass-card link-card">
+        <h3>Cost & Stay</h3>
+        <p>Accommodation details &rarr;</p>
+      </a>
+      <a href="/gifts" class="glass-card link-card">
+        <h3>Gifts</h3>
+        <p>Registry info &rarr;</p>
+      </a>
+    </div>
+
+    <!-- 5. Our Story -->
+    <div class="glass-card story-card">
+      <h3>Our Story</h3>
+      <p>
+        From our first date to saying "I do", every moment has been an adventure. 
+        We can't wait to start this next chapter with all of you by our side.
+      </p>
     </div>
   </div>
 </Layout>
@@ -52,7 +74,7 @@ import Layout from '../layouts/Layout.astro';
     flex-direction: column;
     align-items: center;
     gap: var(--space-8);
-    max-width: var(--max-width-md); /* Keep home page focused/narrower */
+    max-width: var(--max-width-home); /* Wider container */
     margin: 0 auto;
     text-align: center;
     padding-bottom: var(--space-12);
@@ -130,6 +152,41 @@ import Layout from '../layouts/Layout.astro';
     margin-bottom: var(--space-4);
   }
 
+  .countdown-container {
+    margin-top: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-1);
+  }
+
+  .days-number {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-5xl);
+    color: var(--color-primary);
+    line-height: 1;
+  }
+
+  .days-label {
+    font-family: var(--font-body);
+    font-size: var(--font-size-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-text-light);
+  }
+
+  .story-card {
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .story-card h3 {
+    font-family: var(--font-logo);
+    font-size: var(--font-size-4xl);
+    color: var(--color-secondary);
+    margin-bottom: var(--space-4);
+  }
+
   .grid-links {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -161,3 +218,24 @@ import Layout from '../layouts/Layout.astro';
     .grid-links { grid-template-columns: 1fr; }
   }
 </style>
+
+<script>
+  // Simple countdown to Oct 15, 2026
+  function updateCountdown() {
+    const weddingDate = new Date('2026-10-15T00:00:00');
+    const now = new Date();
+    const diff = weddingDate.getTime() - now.getTime();
+    
+    // Calculate days (round up so it says "1 day" on the day before)
+    const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
+    
+    const daysElement = document.getElementById('days-count');
+    if (daysElement) {
+      daysElement.textContent = days > 0 ? days.toString() : '0';
+    }
+  }
+
+  updateCountdown();
+  // Update every minute just in case
+  setInterval(updateCountdown, 60000);
+</script>

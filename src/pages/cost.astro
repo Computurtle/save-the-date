@@ -1,0 +1,373 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+---
+
+<Layout>
+  <Header />
+  
+  <div class="page-container">
+    <h1 class="page-title">Cost & Inclusions</h1>
+    
+    <div class="content-grid">
+      <!-- Cost Details -->
+      <div class="left-column">
+        <div class="glass-card cost-card">
+          <h2>The Breakdown</h2>
+          <div class="price-row">
+            <span class="item">Accommodation (2 Nights)</span>
+            <span class="price">$400</span>
+          </div>
+          <div class="price-row">
+            <span class="item">Food & Drinks</span>
+            <span class="price">$40</span>
+          </div>
+          <div class="divider"></div>
+          <div class="price-row total">
+            <span class="item">Total per Adult</span>
+            <span class="price">$440</span>
+          </div>
+          <p class="payment-note">
+            Please transfer to [Bank Details] by [Date].
+          </p>
+        </div>
+
+        <div class="glass-card info-card">
+          <h3>What's Included</h3>
+          <ul class="inclusion-list">
+            <li><strong>Accommodation:</strong> Oct 14th & 15th (Checkout 16th)</li>
+            <li><strong>Meals:</strong> Breakfast, Lunch, and Dinner provided each day, assortment of drinks and snacks</li>
+            <li><strong>Drinks:</strong> Some wedding drinks will be provided, but feel free to bring your own favorites as well</li>
+          </ul>
+          <p class="note">
+            You are welcome to bring your own specific snacks or drinks if you prefer!
+          </p>
+        </div>
+      </div>
+
+      <!-- Food Preferences Form -->
+      <div class="right-column">
+        <div class="glass-card form-card">
+          <h2>Food Preferences</h2>
+          <p class="form-intro">
+            Help us plan the catering! We'll do our best to accommodate everyone's pizza favorites.
+          </p>
+
+          <form 
+            id="food-form"
+            name="food-preferences" 
+            method="POST" 
+            data-netlify="true" 
+            class="food-form"
+          >
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" name="name" required placeholder="Who is this for?" />
+            </div>
+
+            <div class="form-group">
+              <label for="pizza">Favorite Pizza Flavor</label>
+              <select id="pizza" name="pizza" required>
+                <option value="" disabled selected>Select a flavor...</option>
+                <option value="not-fussed">ANY!</option>
+                <option value="margherita">Margherita</option>
+                <option value="pepperoni">Pepperoni</option>
+                <option value="hawaiian">Hawaiian</option>
+                <option value="bbq-chicken">BBQ Chicken</option>
+                <option value="vegetarian">Vegetarian</option>
+                <option value="meatlovers">Meatlovers</option>
+                <option value="supreme">Supreme</option>
+              </select>
+              <span class="hint">We'll try our best to get your favorite!</span>
+            </div>
+
+            <div class="form-group">
+              <label>Dietary Requirements</label>
+              <div class="checkbox-group">
+                <label class="checkbox-label">
+                  <input type="checkbox" name="dietary" value="vegetarian" />
+                  <span>Vegetarian</span>
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" name="dietary" value="vegan" />
+                  <span>Vegan</span>
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" name="dietary" value="gluten-free" />
+                  <span>Gluten Free</span>
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" name="dietary" value="dairy-free" />
+                  <span>Dairy Free</span>
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" name="dietary" value="nut-allergy" />
+                  <span>Nut Allergy</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="other">Other Notes</label>
+              <textarea id="other" name="other" rows="3" placeholder="Any other allergies or details?"></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">Submit Preferences</button>
+            <p id="form-status" class="form-status"></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  const form = document.getElementById('food-form') as HTMLFormElement;
+  const status = document.getElementById('form-status');
+
+  if (form && status) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const formData = new FormData(form);
+      
+      fetch('/', {
+        method: 'POST',
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(formData as any).toString()
+      })
+      .then(() => {
+        status.textContent = 'Received! Thank you.';
+        status.classList.add('success');
+        form.reset();
+        
+        setTimeout(() => {
+           status.textContent = '';
+           status.classList.remove('success');
+        }, 5000);
+      })
+      .catch((error) => {
+        status.textContent = 'Submission failed. Please try again.';
+        status.classList.add('error');
+      });
+    });
+  }
+</script>
+
+<style>
+  .page-container {
+    max-width: var(--max-width-xl);
+    margin: 0 auto;
+    padding-bottom: var(--space-16);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-12);
+  }
+
+  .page-title {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-5xl);
+    color: var(--color-primary);
+    text-align: center;
+    margin-bottom: var(--space-8);
+  }
+
+  .content-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-8);
+    align-items: start;
+  }
+
+  .left-column, .right-column {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+
+  /* Glass Card */
+  .glass-card {
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: var(--radius-xl);
+    padding: var(--space-8);
+    box-shadow: var(--shadow-lg);
+  }
+
+  /* Cost Card Styles */
+  .cost-card h2, .form-card h2 {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-3xl);
+    color: var(--color-secondary);
+    margin-bottom: var(--space-6);
+    text-align: center;
+  }
+
+  .price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-4);
+    font-size: var(--font-size-lg);
+    color: var(--color-text);
+  }
+
+  .price-row.total {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-2xl);
+    color: var(--color-primary);
+    font-weight: 600;
+    margin-top: var(--space-4);
+  }
+
+  .divider {
+    height: 1px;
+    background: rgba(0,0,0,0.1);
+    margin: var(--space-4) 0;
+  }
+
+  .payment-note {
+    margin-top: var(--space-6);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-light);
+    text-align: center;
+    font-style: italic;
+  }
+
+  /* Info Card Styles */
+  .info-card h3 {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-2xl);
+    color: var(--color-primary);
+    margin-bottom: var(--space-4);
+  }
+
+  .inclusion-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: var(--space-4);
+  }
+
+  .inclusion-list li {
+    margin-bottom: var(--space-2);
+    color: var(--color-text);
+  }
+
+  .note {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-light);
+    font-style: italic;
+  }
+
+  /* Form Styles */
+  .form-intro {
+    text-align: center;
+    margin-bottom: var(--space-6);
+    color: var(--color-text);
+  }
+
+  .food-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  label {
+    font-weight: 500;
+    color: var(--color-text);
+    font-size: var(--font-size-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  input[type="text"],
+  select,
+  textarea {
+    padding: var(--space-3);
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.5);
+    font-family: var(--font-body);
+    font-size: var(--font-size-base);
+    color: var(--color-text);
+    transition: all 0.2s ease;
+  }
+
+  input[type="text"]:focus,
+  select:focus,
+  textarea:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.8);
+    border-color: var(--color-primary);
+  }
+
+  .hint {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-light);
+    font-style: italic;
+  }
+
+  .checkbox-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-2);
+  }
+
+  .checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    cursor: pointer;
+    text-transform: none;
+    font-size: var(--font-size-base);
+  }
+
+  .submit-btn {
+    background: var(--color-primary);
+    color: white;
+    border: none;
+    padding: var(--space-4);
+    border-radius: var(--radius-full);
+    font-family: var(--font-heading);
+    font-size: var(--font-size-xl);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: var(--space-2);
+  }
+
+  .submit-btn:hover {
+    background: #8a75c4; /* Slightly darker lavender */
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .form-status {
+    text-align: center;
+    min-height: 1.5em;
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+
+  .form-status.success {
+    color: var(--color-primary);
+  }
+
+  .form-status.error {
+    color: #e53e3e;
+  }
+
+  @media (max-width: 768px) {
+    .content-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

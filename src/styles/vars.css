@@ -50,6 +50,7 @@
   --max-width-lg: 1024px;
   --max-width-xl: 1280px;
   --max-width-content: 1536px; /* 120% of xl */
+  --max-width-home: 1024px; /* Wider home container (was md/768px) */
 
   /* Border radius */
   --radius-sm: 0.25rem;

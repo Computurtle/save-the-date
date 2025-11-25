@@ -1,0 +1,235 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+
+const qas = [
+  {
+    question: "What is the dress code?",
+    answer: "The theme is Indian-inspired Western. For the ladies, Saris will be worn (we can help you find one!). For the men, suits or smart dress is perfect. We will also be providing some fun Indian accessories for everyone to wear on the day!"
+  },
+  {
+    question: "What about the colors?",
+    answer: "Our wedding palette is Lavender and Sage Green. You don't have to match this exactly, but it gives you an idea of the vibe we are going for."
+  },
+  {
+    question: "Is there a Henna night?",
+    answer: "Yes! The bridal party will be doing Henna the day before (Oct 14th). If you're around and interested, let us know!"
+  },
+  {
+    question: "Can I bring a plus one?",
+    answer: "As we are keeping this very intimate (~15 guests), we are unfortunately unable to accommodate extra plus ones outside of those named on the invitation."
+  },
+  {
+    question: "What will the weather be like?",
+    answer: "October in Margaret River is usually mild to cool (avg 16°C - 20°C). It can get chilly in the evenings, so bring a jacket!"
+  }
+];
+---
+
+<Layout>
+  <Header />
+  
+  <div class="page-container">
+    <h1 class="page-title">The Details</h1>
+    
+    <!-- Vibe & Theme Section -->
+    <div class="vibe-card glass-card">
+      <div class="vibe-content">
+        <h2>The Vibe</h2>
+        <p class="theme-text">
+          We are blending our worlds with an <strong>Indian-inspired Western wedding</strong>. 
+          Think rustic Margaret River charm meets vibrant Indian tradition.
+        </p>
+        
+        <div class="style-guide">
+          <div class="style-item">
+            <h3>Dress Code</h3>
+            <p><strong>Ladies:</strong> Saris</p>
+            <p><strong>Gents:</strong> Suits / Smart Dress</p>
+            <p class="note">Indian accessories will be provided for everyone to wear!</p>
+          </div>
+          
+          <div class="style-item">
+            <h3>Palette</h3>
+            <div class="color-swatches">
+              <div class="swatch lavender"><span>Lavender</span></div>
+              <div class="swatch sage"><span>Sage</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q&A Section -->
+    <div class="qa-section">
+      <h2 class="section-title">Questions & Answers</h2>
+      <div class="qa-grid">
+        {qas.map((qa) => (
+          <div class="qa-card glass-card">
+            <h3>{qa.question}</h3>
+            <p>{qa.answer}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .page-container {
+    max-width: var(--max-width-xl);
+    margin: 0 auto;
+    padding-bottom: var(--space-16);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-12);
+  }
+
+  .page-title {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-5xl);
+    color: var(--color-primary);
+    text-align: center;
+    margin-bottom: var(--space-4);
+  }
+
+  /* Vibe Card */
+  .vibe-card {
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: var(--radius-xl);
+    padding: var(--space-10);
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .vibe-content h2 {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-4xl);
+    color: var(--color-secondary);
+    margin-bottom: var(--space-6);
+  }
+
+  .theme-text {
+    font-size: var(--font-size-xl);
+    color: var(--color-text);
+    margin-bottom: var(--space-10);
+    line-height: 1.6;
+  }
+
+  .style-guide {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-8);
+    text-align: left;
+  }
+
+  .style-item h3 {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-2xl);
+    color: var(--color-primary);
+    margin-bottom: var(--space-4);
+    border-bottom: 2px solid rgba(255,255,255,0.5);
+    padding-bottom: var(--space-2);
+  }
+
+  .style-item p {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--space-2);
+    color: var(--color-text);
+  }
+
+  .note {
+    font-size: var(--font-size-base) !important;
+    font-style: italic;
+    color: var(--color-text-light) !important;
+    margin-top: var(--space-2);
+  }
+
+  /* Color Swatches */
+  .color-swatches {
+    display: flex;
+    gap: var(--space-4);
+  }
+
+  .swatch {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-size-xs);
+    font-weight: bold;
+    color: white;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    box-shadow: var(--shadow-md);
+  }
+
+  .swatch.lavender {
+    background-color: #B5A3D6; /* Lavender */
+  }
+
+  .swatch.sage {
+    background-color: #9CAF88; /* Sage Green */
+  }
+
+  /* Q&A Section */
+  .section-title {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-3xl);
+    color: var(--color-primary);
+    text-align: center;
+    margin-bottom: var(--space-8);
+  }
+
+  .qa-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-6);
+  }
+
+  .qa-card {
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    transition: transform 0.2s ease;
+  }
+
+  .qa-card:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.5);
+  }
+
+  .qa-card h3 {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-xl);
+    color: var(--color-secondary);
+    margin-bottom: var(--space-3);
+  }
+
+  .qa-card p {
+    color: var(--color-text);
+    line-height: 1.5;
+  }
+
+  @media (max-width: 768px) {
+    .style-guide {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+    
+    .style-item h3 {
+      text-align: center;
+    }
+    
+    .color-swatches {
+      justify-content: center;
+    }
+  }
+</style>
