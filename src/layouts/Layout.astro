@@ -16,6 +16,13 @@ import Background from '../components/Background.astro';
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Dancing+Script:wght@400;500;600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+		<script is:inline>
+			// Check if user has visited in this session
+			if (!sessionStorage.getItem('visited')) {
+				document.documentElement.classList.add('first-visit');
+				sessionStorage.setItem('visited', 'true');
+			}
+		</script>
 	</head>
 	<body>
 		<Background />

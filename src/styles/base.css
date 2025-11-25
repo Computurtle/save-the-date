@@ -183,3 +183,66 @@ textarea {
   background: var(--color-secondary);
   color: white;
 }
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUpFade {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Header Animation - Fast Fade In */
+.first-visit .header {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Page Content Animation - Staggered Slide Up */
+.page-container > *,
+.home-container > * {
+  opacity: 0; /* Start hidden */
+  animation: slideUpFade 0.8s ease-out forwards;
+}
+
+.page-container > *:nth-child(1),
+.home-container > *:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.page-container > *:nth-child(2),
+.home-container > *:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.page-container > *:nth-child(3),
+.home-container > *:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.page-container > *:nth-child(4),
+.home-container > *:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+.page-container > *:nth-child(5),
+.home-container > *:nth-child(5) {
+  animation-delay: 0.5s;
+}
+
+.page-container > *:nth-child(n + 6),
+.home-container > *:nth-child(n + 6) {
+  animation-delay: 0.6s;
+}
