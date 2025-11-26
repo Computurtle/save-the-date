@@ -58,8 +58,12 @@ import Header from '../components/Header.astro';
             name="food-preferences" 
             method="POST" 
             data-netlify="true" 
+            netlify-honeypot="bot-field"
             class="food-form"
           >
+            <p class="hidden" style="display: none;">
+              <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
+            </p>
             <div class="form-group">
               <label for="name">Your Name</label>
               <input type="text" id="name" name="name" required placeholder="Who is this for?" />
@@ -112,6 +116,11 @@ import Header from '../components/Header.astro';
               <textarea id="other" name="other" rows="3" placeholder="Any other allergies or details?"></textarea>
             </div>
 
+            <div class="form-group">
+              <label for="security">Security Check</label>
+              <input type="text" id="security" name="security" required placeholder="What year is the wedding?" />
+            </div>
+
             <button type="submit" class="submit-btn">Submit Preferences</button>
             <p id="form-status" class="form-status"></p>
           </form>
@@ -124,11 +133,55 @@ import Header from '../components/Header.astro';
 <script>
   const form = document.getElementById('food-form') as HTMLFormElement;
   const status = document.getElementById('form-status');
+  const MAX_SUBMISSIONS = 5;
+  const MIN_TIME_SECONDS = 3;
+  const pageLoadTime = Date.now();
+
+  // Check previous submissions
+  const getSubmissionCount = () => {
+    return parseInt(localStorage.getItem('form_submissions') || '0');
+  };
+
+  const incrementSubmissionCount = () => {
+    const current = getSubmissionCount();
+    localStorage.setItem('form_submissions', (current + 1).toString());
+  };
 
   if (form && status) {
+    // Disable if already over limit on load
+    if (getSubmissionCount() >= MAX_SUBMISSIONS) {
+      form.style.opacity = '0.5';
+      form.style.pointerEvents = 'none';
+      status.textContent = 'You have reached the maximum number of submissions.';
+      status.classList.add('error');
+    }
+
     form.addEventListener('submit', (e) => {
       e.preventDefault();
       
+      // 1. Session Rate Limit Check
+      if (getSubmissionCount() >= MAX_SUBMISSIONS) {
+        status.textContent = 'You have reached the maximum number of submissions.';
+        status.classList.add('error');
+        return;
+      }
+
+      // 2. Speed Trap (Bot Check)
+      const timeElapsed = (Date.now() - pageLoadTime) / 1000;
+      if (timeElapsed < MIN_TIME_SECONDS) {
+        status.textContent = 'Please take your time filling out the form.';
+        status.classList.add('error');
+        return;
+      }
+      
+      // 3. Security Question Check
+      const securityInput = document.getElementById('security') as HTMLInputElement;
+      if (securityInput && securityInput.value.trim() !== '2026') {
+        status.textContent = 'Incorrect security answer. Please try again.';
+        status.classList.add('error');
+        return;
+      }
+
       const formData = new FormData(form);
       
       fetch('/', {
@@ -137,6 +190,7 @@ import Header from '../components/Header.astro';
         body: new URLSearchParams(formData as any).toString()
       })
       .then(() => {
+        incrementSubmissionCount(); // Count this success
         status.textContent = 'Received! Thank you.';
         status.classList.add('success');
         form.reset();
