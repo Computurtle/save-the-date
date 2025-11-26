@@ -1,241 +1,261 @@
 ---
-import Header from '../components/Header.astro';
-import Layout from '../layouts/Layout.astro';
+import Header from "../components/Header.astro";
+import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout>
-  <Header />
-  
-  <div class="home-container">
-    <!-- 1. The Announcement -->
-    <section class="intro">
-      <h1 class="names">
-        <span class="name-josh">Josh</span> 
-        <span class="amp">&</span> 
-        <span class="name-lina">Lina</span>
-      </h1>
-      <p class="date">October 14th - 16th, 2026</p>
-      <p class="location">Chambre Estate, Margaret River</p>
-    </section>
+    <Header />
 
-    <!-- 2. The Couple -->
-    <div class="photo-frame">
-      <img src="/us.jpg" alt="Josh and Lina" class="photo" />
-    </div>
+    <div class="home-container">
+        <!-- 1. The Announcement -->
+        <section class="intro">
+            <h1 class="names">
+                <span class="name-josh">Josh</span>
+                <span class="amp">&</span>
+                <span class="name-lina">Lina</span>
+            </h1>
+            <p class="date">October 14th - 16th, 2026</p>
+            <p class="location">Chambre Estate, Margaret River</p>
+        </section>
 
-    <!-- 3. The Welcome Note -->
-    <div class="glass-card welcome-card">
-      <h2>We're getting married!</h2>
-      <p>
-        We are so excited to celebrate our special weekend with our favourite people. 
-        Get ready for good food, great vibes, and a little bit of magic.
-      </p>
-      
-      <div class="countdown-container">
-        <span id="days-count" class="days-number">--</span>
-        <span class="days-label">days to go</span>
-      </div>
-    </div>
+        <!-- 2. The Couple -->
+        <div class="photo-frame">
+            <img src="/us.jpg" alt="Josh and Lina" class="photo" />
+        </div>
 
-    <!-- 4. Quick Links Grid -->
-    <div class="grid-links">
-      <a href="/schedule" class="glass-card link-card">
-        <h3>The Schedule</h3>
-        <p>See the plan for the 3 days &rarr;</p>
-      </a>
-      <a href="/location" class="glass-card link-card">
-        <h3>Location</h3>
-        <p>Map & directions &rarr;</p>
-      </a>
-      <a href="/cost" class="glass-card link-card">
-        <h3>Cost & Stay</h3>
-        <p>Accommodation details &rarr;</p>
-      </a>
-      <a href="/gifts" class="glass-card link-card">
-        <h3>Gifts</h3>
-        <p>Registry info &rarr;</p>
-      </a>
-    </div>
+        <!-- 3. The Welcome Note -->
+        <div class="glass-card welcome-card">
+            <h2>We're getting married!</h2>
+            <p>
+                We are so excited to celebrate our special weekend with our
+                favourite people. Get ready for good food, great vibes, and a
+                little bit of magic.
+            </p>
 
-    <!-- 5. Our Story -->
-    <div class="glass-card story-card">
-      <h3>Our Story</h3>
-      <p>
-        From our first date to saying "I do", every moment has been an adventure. 
-        We can't wait to start this next chapter with all of you by our side.
-      </p>
+            <div class="divider"></div>
+
+            <div class="countdown-container">
+                <span id="days-count" class="days-number">--</span>
+                <span class="days-label">days to go</span>
+            </div>
+        </div>
+
+        <!-- 4. Quick Links Grid -->
+        <div class="grid-links">
+            <a href="/schedule" class="glass-card link-card">
+                <h3>The Schedule</h3>
+                <p>See the plan for the 3 days &rarr;</p>
+            </a>
+            <a href="/location" class="glass-card link-card">
+                <h3>Location</h3>
+                <p>Map & directions &rarr;</p>
+            </a>
+            <a href="/cost" class="glass-card link-card">
+                <h3>Cost & Stay</h3>
+                <p>Accommodation details &rarr;</p>
+            </a>
+            <a href="/gifts" class="glass-card link-card">
+                <h3>Gifts</h3>
+                <p>Registry info &rarr;</p>
+            </a>
+        </div>
+
+        <!-- 5. Our Story -->
+        <div class="glass-card story-card">
+            <h3>Our Story</h3>
+            <p>
+                From our first date to saying "I do", every moment has been an
+                adventure. We can't wait to start this next chapter with all of
+                you by our side.
+            </p>
+        </div>
     </div>
-  </div>
 </Layout>
 
 <style>
-  .home-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--space-8);
-    max-width: var(--max-width-home); /* Wider container */
-    margin: 0 auto;
-    text-align: center;
-    padding-bottom: var(--space-12);
-  }
+    .home-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-8);
+        max-width: var(--max-width-home); /* Wider container */
+        margin: 0 auto;
+        text-align: center;
+        padding-bottom: var(--space-12);
+    }
 
-  .names {
-    font-family: var(--font-logo);
-    font-size: var(--font-size-7xl);
-    margin-bottom: var(--space-2);
-    line-height: 1.1;
-  }
+    .names {
+        font-family: var(--font-logo);
+        font-size: var(--font-size-7xl);
+        margin-bottom: var(--space-2);
+        line-height: 1.1;
+    }
 
-  .name-josh { color: var(--color-secondary); }
-  .amp { color: var(--color-text); font-size: 0.8em; }
-  .name-lina { color: var(--color-primary); }
+    .name-josh {
+        color: var(--color-secondary);
+    }
+    .amp {
+        color: var(--color-text);
+        font-size: 0.8em;
+    }
+    .name-lina {
+        color: var(--color-primary);
+    }
 
-  .date {
-    font-family: var(--font-heading);
-    font-size: var(--font-size-2xl);
-    color: var(--color-text);
-    font-weight: 500;
-  }
+    .date {
+        font-family: var(--font-heading);
+        font-size: var(--font-size-2xl);
+        color: var(--color-text);
+        font-weight: 500;
+    }
 
-  .location {
-    font-size: var(--font-size-lg);
-    color: var(--color-text-light);
-    margin-top: var(--space-1);
-  }
+    .location {
+        font-size: var(--font-size-lg);
+        color: var(--color-text-light);
+        margin-top: var(--space-1);
+    }
 
-  /* Glass Card Styles */
-  .glass-card {
-    background: rgba(255, 255, 255, 0.4);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.6);
-    border-radius: var(--radius-xl);
-    padding: var(--space-8);
-    box-shadow: var(--shadow-lg);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
+    .photo-frame {
+        padding: var(--space-3);
+        background: rgba(255, 255, 255, 0.3);
+        border: 1px solid rgba(255, 255, 255, 0.6); /* Added border */
+        border-radius: var(--radius-2xl);
+        transform: rotate(-2deg); /* Jaunty angle */
+        transition: transform 0.3s ease;
+        margin-bottom: var(--space-8); /* Extra spacing below photo */
+        box-shadow: var(--shadow-lg); /* Added shadow for depth */
+    }
 
-  .photo-frame {
-    padding: var(--space-3);
-    background: rgba(255, 255, 255, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.6); /* Added border */
-    border-radius: var(--radius-2xl);
-    transform: rotate(-2deg); /* Jaunty angle */
-    transition: transform 0.3s ease;
-    margin-bottom: var(--space-8); /* Extra spacing below photo */
-    box-shadow: var(--shadow-lg); /* Added shadow for depth */
-  }
+    .photo-frame:hover {
+        transform: rotate(0deg) scale(1.02);
+    }
 
-  .photo-frame:hover {
-    transform: rotate(0deg) scale(1.02);
-  }
+    .photo {
+        width: 280px;
+        height: 350px;
+        object-fit: cover;
+        border-radius: var(--radius-xl);
+        display: block;
+    }
 
-  .photo {
-    width: 280px;
-    height: 350px;
-    object-fit: cover;
-    border-radius: var(--radius-xl);
-    display: block;
-  }
+    .welcome-card {
+        max-width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
 
-  .welcome-card {
-    max-width: 100%;
-  }
+    .welcome-card h2 {
+        font-family: var(--font-heading);
+        color: var(--color-secondary);
+        margin-bottom: var(--space-4);
+    }
 
-  .welcome-card h2 {
-    font-family: var(--font-heading);
-    color: var(--color-secondary);
-    margin-bottom: var(--space-4);
-  }
+    .countdown-container {
+        margin-top: var(--space-6);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-1);
+    }
 
-  .countdown-container {
-    margin-top: var(--space-6);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--space-1);
-  }
+    .days-number {
+        font-family: var(--font-logo);
+        font-size: var(--font-size-4xl);
+        color: var(--color-primary);
+        line-height: 1;
+        font-weight: 300;
+    }
 
-  .days-number {
-    font-family: var(--font-heading);
-    font-size: var(--font-size-5xl);
-    color: var(--color-primary);
-    line-height: 1;
-  }
+    .divider {
+        width: 100%;
+        height: 1px;
+        background: rgba(74, 74, 74, 0.1);
+        margin: var(--space-6) 0;
+    }
 
-  .days-label {
-    font-family: var(--font-body);
-    font-size: var(--font-size-sm);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--color-text-light);
-  }
+    .days-label {
+        font-family: var(--font-body);
+        font-size: var(--font-size-sm);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--color-text-light);
+    }
 
-  .story-card {
-    max-width: 100%;
-    text-align: center;
-  }
+    .story-card {
+        max-width: 100%;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
 
-  .story-card h3 {
-    font-family: var(--font-logo);
-    font-size: var(--font-size-4xl);
-    color: var(--color-secondary);
-    margin-bottom: var(--space-4);
-  }
+    .story-card h3 {
+        font-family: var(--font-heading);
+        font-size: var(--font-size-3xl);
+        color: var(--color-secondary);
+        margin-bottom: var(--space-4);
+    }
 
-  .grid-links {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-4);
-    width: 100%;
-  }
+    .grid-links {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-4);
+        width: 100%;
+    }
 
-  .link-card {
-    text-decoration: none;
-    color: var(--color-text);
-    transition: all 0.2s ease;
-    padding: var(--space-6);
-  }
+    .link-card {
+        text-decoration: none;
+        color: var(--color-text);
+        transition: all 0.2s ease;
+        padding: var(--space-6);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
 
-  .link-card:hover {
-    background: rgba(255, 255, 255, 0.6);
-    transform: translateY(-2px);
-  }
+    .link-card:hover {
+        background: rgba(255, 255, 255, 0.6);
+        transform: translateY(-2px);
+    }
 
-  .link-card h3 {
-    font-family: var(--font-heading);
-    font-size: var(--font-size-xl);
-    margin-bottom: var(--space-2);
-    color: var(--color-primary);
-  }
+    .link-card h3 {
+        font-family: var(--font-heading);
+        font-size: var(--font-size-xl);
+        margin-bottom: var(--space-2);
+        color: var(--color-primary);
+    }
 
-  @media (max-width: 640px) {
-    .names { font-size: var(--font-size-5xl); }
-    .grid-links { grid-template-columns: 1fr; }
-  }
+    @media (max-width: 640px) {
+        .names {
+            font-size: var(--font-size-5xl);
+        }
+        .grid-links {
+            grid-template-columns: 1fr;
+        }
+    }
 </style>
 
 <script>
-  // Simple countdown to Oct 15, 2026
-  function updateCountdown() {
-    const weddingDate = new Date('2026-10-15T00:00:00');
-    const now = new Date();
-    const diff = weddingDate.getTime() - now.getTime();
-    
-    // Calculate days (round up so it says "1 day" on the day before)
-    const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
-    
-    const daysElement = document.getElementById('days-count');
-    if (daysElement) {
-      daysElement.textContent = days > 0 ? days.toString() : '0';
-    }
-  }
+    // Simple countdown to Oct 15, 2026
+    function updateCountdown() {
+        const weddingDate = new Date("2026-10-15T00:00:00");
+        const now = new Date();
+        const diff = weddingDate.getTime() - now.getTime();
 
-  updateCountdown();
-  // Update every minute just in case
-  setInterval(updateCountdown, 60000);
+        // Calculate days (round up so it says "1 day" on the day before)
+        const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
+
+        const daysElement = document.getElementById("days-count");
+        if (daysElement) {
+            daysElement.textContent = days > 0 ? days.toString() : "0";
+        }
+    }
+
+    updateCountdown();
+    // Update every minute just in case
+    setInterval(updateCountdown, 60000);
 </script>

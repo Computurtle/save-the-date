@@ -1,196 +1,172 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
 ---
 
 <Layout>
-  <Header />
-  
-  <div class="page-container">
-    <h1 class="page-title">The Location</h1>
-    
-    <div class="content-grid">
-      <!-- Map Card -->
-      <div class="glass-card map-card">
-        <div class="map-frame">
-          <iframe 
-            width="100%" 
-            height="100%" 
-            frameborder="0" 
-            scrolling="no" 
-            marginheight="0" 
-            marginwidth="0" 
-            src="https://maps.google.com/maps?q=Chambre%20Estate%20Margaret%20River&t=&z=15&ie=UTF8&iwloc=&output=embed"
-            title="Chambre Estate Location"
-            loading="lazy"
-          ></iframe>
-        </div>
-        <div class="map-actions">
-          <a 
-            href="https://www.google.com/maps/search/?api=1&query=Chambre+Estate+Margaret+River" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            class="action-btn"
-          >
-            Open in Google Maps &rarr;
-          </a>
-        </div>
-      </div>
+    <Header />
 
-      <!-- Details Card -->
-      <div class="glass-card details-card">
-        <div class="address-section">
-          <h2>Chambre Estate</h2>
-          <p class="address">Margaret River, Western Australia</p>
-          <p class="note">A beautiful private estate tucked away in the heart of the region.</p>
-        </div>
+    <div class="page-container">
+        <h1 class="page-title">The Location</h1>
 
-        <div class="info-section">
-          <h3>Getting There</h3>
-          <p>
-            The estate is located in the Margaret River region, approximately 3 hours drive south of Perth.
-            We recommend hiring a car if you are flying in, as public transport options are limited in the area.
-          </p>
-        </div>
+        <div class="content-grid">
+            <!-- Map Card -->
+            <div class="glass-card map-card">
+                <div class="map-frame">
+                    <iframe
+                        width="100%"
+                        height="100%"
+                        frameborder="0"
+                        scrolling="no"
+                        marginheight="0"
+                        marginwidth="0"
+                        src="https://maps.google.com/maps?q=Chambre%20Estate%20Margaret%20River&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                        title="Chambre Estate Location"
+                        loading="lazy"></iframe>
+                </div>
+                <div class="map-actions">
+                    <a
+                        href="https://www.google.com/maps/search/?api=1&query=Chambre+Estate+Margaret+River"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="action-btn"
+                    >
+                        Open in Google Maps &rarr;
+                    </a>
+                </div>
+            </div>
 
-        <div class="info-section">
-          <h3>Parking</h3>
-          <p>
-            There is plenty of parking available on-site for those driving.
-            Please follow the signs upon arrival.
-          </p>
+            <!-- Details Card -->
+            <div class="glass-card details-card">
+                <div class="address-section">
+                    <h2>Chambre Estate</h2>
+                    <p class="address">Margaret River, Western Australia</p>
+                    <p class="note">
+                        A beautiful private estate tucked away in the heart of
+                        the region.
+                    </p>
+                </div>
+
+                <div class="info-section">
+                    <h3>Getting There</h3>
+                    <p>
+                        The estate is located in the Margaret River region,
+                        approximately 3 hours drive south of Perth. We recommend
+                        hiring a car if you are flying in, as public transport
+                        options are limited in the area.
+                    </p>
+                </div>
+
+                <div class="info-section">
+                    <h3>Parking</h3>
+                    <p>
+                        There is plenty of parking available on-site for those
+                        driving. Please follow the signs upon arrival.
+                    </p>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </Layout>
 
 <style>
-  .page-container {
-    max-width: var(--max-width-xl);
-    margin: 0 auto;
-    padding-bottom: var(--space-16);
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-12);
-  }
-
-  .page-title {
-    font-family: var(--font-heading);
-    font-size: var(--font-size-5xl);
-    color: var(--color-primary);
-    text-align: center;
-    margin-bottom: var(--space-8);
-  }
-
-  .content-grid {
-    display: grid;
-    grid-template-columns: 1.5fr 1fr;
-    gap: var(--space-8);
-    align-items: start;
-  }
-
-  /* Glass Card */
-  .glass-card {
-    background: rgba(255, 255, 255, 0.4);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.6);
-    border-radius: var(--radius-xl);
-    padding: var(--space-6);
-    box-shadow: var(--shadow-lg);
-  }
-
-  /* Map Styles */
-  .map-card {
-    padding: var(--space-3);
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-4);
-  }
-
-  .map-frame {
-    width: 100%;
-    height: 500px;
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.5);
-  }
-
-  iframe {
-    filter: grayscale(20%) contrast(95%) sepia(10%); /* Soften the map colors */
-    transition: filter 0.3s ease;
-  }
-
-  .map-frame:hover iframe {
-    filter: none;
-  }
-
-  .map-actions {
-    display: flex;
-    justify-content: flex-end;
-    padding: 0 var(--space-2);
-  }
-
-  .action-btn {
-    display: inline-block;
-    text-decoration: none;
-    color: var(--color-primary);
-    font-weight: 500;
-    font-size: var(--font-size-sm);
-    transition: transform 0.2s ease;
-  }
-
-  .action-btn:hover {
-    transform: translateX(4px);
-  }
-
-  /* Details Styles */
-  .details-card {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-8);
-    padding: var(--space-8);
-  }
-
-  .address-section h2 {
-    font-family: var(--font-heading);
-    font-size: var(--font-size-4xl);
-    color: var(--color-secondary);
-    margin-bottom: var(--space-2);
-    line-height: 1.1;
-  }
-
-  .address {
-    font-size: var(--font-size-xl);
-    color: var(--color-text);
-    margin-bottom: var(--space-4);
-  }
-
-  .note {
-    font-style: italic;
-    color: var(--color-text-light);
-  }
-
-  .info-section h3 {
-    font-family: var(--font-heading);
-    font-size: var(--font-size-2xl);
-    color: var(--color-primary);
-    margin-bottom: var(--space-3);
-  }
-
-  .info-section p {
-    line-height: var(--line-height-relaxed);
-    color: var(--color-text);
-  }
-
-  @media (max-width: 768px) {
     .content-grid {
-      grid-template-columns: 1fr;
+        display: grid;
+        grid-template-columns: 1.5fr 1fr;
+        gap: var(--space-8);
+        align-items: start;
+    }
+
+    /* Map Styles */
+    .map-card {
+        padding: var(--space-3);
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-4);
     }
 
     .map-frame {
-      height: 350px;
+        width: 100%;
+        height: 500px;
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.5);
     }
-  }
+
+    iframe {
+        filter: grayscale(20%) contrast(95%) sepia(10%); /* Soften the map colors */
+        transition: filter 0.3s ease;
+    }
+
+    .map-frame:hover iframe {
+        filter: none;
+    }
+
+    .map-actions {
+        display: flex;
+        justify-content: flex-end;
+        padding: 0 var(--space-2);
+    }
+
+    .action-btn {
+        display: inline-block;
+        text-decoration: none;
+        color: var(--color-primary);
+        font-weight: 500;
+        font-size: var(--font-size-sm);
+        transition: transform 0.2s ease;
+    }
+
+    .action-btn:hover {
+        transform: translateX(4px);
+    }
+
+    /* Details Styles */
+    .details-card {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-8);
+        padding: var(--space-8);
+    }
+
+    .address-section h2 {
+        font-family: var(--font-heading);
+        font-size: var(--font-size-4xl);
+        color: var(--color-secondary);
+        margin-bottom: var(--space-2);
+        line-height: 1.1;
+    }
+
+    .address {
+        font-size: var(--font-size-xl);
+        color: var(--color-text);
+        margin-bottom: var(--space-4);
+    }
+
+    .note {
+        font-style: italic;
+        color: var(--color-text-light);
+    }
+
+    .info-section h3 {
+        font-family: var(--font-heading);
+        font-size: var(--font-size-2xl);
+        color: var(--color-primary);
+        margin-bottom: var(--space-3);
+    }
+
+    .info-section p {
+        line-height: var(--line-height-relaxed);
+        color: var(--color-text);
+    }
+
+    @media (max-width: 768px) {
+        .content-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .map-frame {
+            height: 350px;
+        }
+    }
 </style>

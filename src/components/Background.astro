@@ -1,107 +1,89 @@
 ---
+
 ---
+
 <div class="background-container">
-  <div class="bubble bubble-1"></div>
-  <div class="bubble bubble-2"></div>
-  <div class="bubble bubble-3"></div>
-  <div class="bubble bubble-4"></div>
-  <div class="bubble bubble-5"></div>
-  <div class="bubble bubble-6"></div>
-  <div class="bubble bubble-7"></div>
-  <div class="bubble bubble-8"></div>
-  <div class="bubble bubble-9"></div>
-  <div class="bubble bubble-10"></div>
-  <div class="bubble bubble-11"></div>
-  <div class="bubble bubble-12"></div>
-  <!-- Desktop extras -->
-  <div class="bubble bubble-13"></div>
-  <div class="bubble bubble-14"></div>
-  <div class="bubble bubble-15"></div>
-  <div class="bubble bubble-16"></div>
-  <div class="bubble bubble-17"></div>
-  <div class="bubble bubble-18"></div>
-  <div class="bubble bubble-19"></div>
-  <div class="bubble bubble-20"></div>
+    <div class="gradient-mesh"></div>
+    <div class="noise-overlay"></div>
 </div>
 
 <style>
-  .background-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    overflow: hidden;
-    pointer-events: none;
-    background-color: var(--color-bg);
-  }
-
-  .bubble {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(40px);
-    opacity: 0;
-    animation: sparkle infinite ease-in-out;
-  }
-
-  /* Base bubbles (Mobile & Desktop) */
-  .bubble-1 { width: 25vw; height: 25vw; background: var(--color-primary); top: -5%; left: -5%; animation-duration: 7s; animation-delay: 0s; }
-  .bubble-2 { width: 20vw; height: 20vw; background: var(--color-secondary); top: 10%; right: 10%; animation-duration: 8s; animation-delay: 1s; }
-  .bubble-3 { width: 30vw; height: 30vw; background: var(--color-primary); bottom: 10%; left: 20%; animation-duration: 9s; animation-delay: 2s; }
-  .bubble-4 { width: 15vw; height: 15vw; background: var(--color-secondary); bottom: 20%; right: 5%; animation-duration: 6s; animation-delay: 3s; }
-  .bubble-5 { width: 22vw; height: 22vw; background: var(--color-primary); top: 40%; left: 10%; animation-duration: 10s; animation-delay: 0.5s; }
-  .bubble-6 { width: 28vw; height: 28vw; background: var(--color-secondary); top: 30%; right: 40%; animation-duration: 11s; animation-delay: 1.5s; }
-  .bubble-7 { width: 18vw; height: 18vw; background: var(--color-primary); top: 15%; left: 50%; animation-duration: 7.5s; animation-delay: 2.5s; }
-  .bubble-8 { width: 24vw; height: 24vw; background: var(--color-secondary); bottom: 5%; right: 30%; animation-duration: 8.5s; animation-delay: 3.5s; }
-  .bubble-9 { width: 26vw; height: 26vw; background: var(--color-primary); top: 60%; left: 5%; animation-duration: 9.5s; animation-delay: 4s; }
-  .bubble-10 { width: 16vw; height: 16vw; background: var(--color-secondary); top: 80%; right: 15%; animation-duration: 6.5s; animation-delay: 5s; }
-  .bubble-11 { width: 32vw; height: 32vw; background: var(--color-primary); top: 5%; right: 5%; animation-duration: 12s; animation-delay: 0.2s; }
-  .bubble-12 { width: 19vw; height: 19vw; background: var(--color-secondary); bottom: 40%; left: -5%; animation-duration: 7.2s; animation-delay: 1.8s; }
-
-  /* Extra bubbles (Desktop only) */
-  .bubble-13 { width: 18vw; height: 18vw; background: var(--color-primary); top: 15%; left: 35%; animation-duration: 9s; animation-delay: 1s; }
-  .bubble-14 { width: 14vw; height: 14vw; background: var(--color-secondary); top: 45%; right: 25%; animation-duration: 11s; animation-delay: 3s; }
-  .bubble-15 { width: 20vw; height: 20vw; background: var(--color-primary); bottom: 35%; left: 45%; animation-duration: 8s; animation-delay: 5s; }
-  .bubble-16 { width: 16vw; height: 16vw; background: var(--color-secondary); top: 25%; right: 45%; animation-duration: 10s; animation-delay: 2s; }
-  .bubble-17 { width: 22vw; height: 22vw; background: var(--color-primary); bottom: 15%; left: 30%; animation-duration: 12s; animation-delay: 4s; }
-  .bubble-18 { width: 12vw; height: 12vw; background: var(--color-secondary); top: 5%; left: 60%; animation-duration: 7s; animation-delay: 0.5s; }
-  .bubble-19 { width: 24vw; height: 24vw; background: var(--color-primary); top: 55%; right: 10%; animation-duration: 13s; animation-delay: 1.5s; }
-  .bubble-20 { width: 15vw; height: 15vw; background: var(--color-secondary); bottom: 45%; left: 10%; animation-duration: 9s; animation-delay: 3.5s; }
-
-  /* Hide extras on mobile */
-  .bubble-13, .bubble-14, .bubble-15, .bubble-16, 
-  .bubble-17, .bubble-18, .bubble-19, .bubble-20 {
-    display: none;
-  }
-
-  @media (min-width: 768px) {
-    /* Cap size on desktop so they don't get too huge */
-    .bubble {
-      max-width: 12rem; /* ~192px */
-      max-height: 12rem;
-      filter: blur(50px); /* Slightly more blur for larger screens */
+    .background-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        overflow: hidden;
+        background-color: var(--color-bg);
     }
 
-    /* Show extras on desktop */
-    .bubble-13, .bubble-14, .bubble-15, .bubble-16, 
-    .bubble-17, .bubble-18, .bubble-19, .bubble-20 {
-      display: block;
+    /*
+    Creates a soft, watercolor-like wash of the theme colors.
+    Using radial gradients instead of moving divs prevents the "dizzy" blur effect.
+  */
+    .gradient-mesh {
+        position: absolute;
+        inset: -50%; /* Extend well beyond viewport to allow movement */
+        width: 200%;
+        height: 200%;
+        background-image:
+            radial-gradient(
+                circle at 50% 50%,
+                rgba(255, 255, 255, 0.1) 0%,
+                transparent 60%
+            ),
+            radial-gradient(
+                circle at 0% 0%,
+                rgba(155, 135, 213, 0.5) 0%,
+                transparent 60%
+            ),
+            /* Lavender */
+                radial-gradient(
+                    circle at 100% 100%,
+                    rgba(139, 168, 136, 0.6) 0%,
+                    transparent 60%
+                ),
+            /* Sage */
+                radial-gradient(
+                    circle at 100% 0%,
+                    rgba(155, 135, 213, 0.45) 0%,
+                    transparent 60%
+                ),
+            /* Lavender */
+                radial-gradient(
+                    circle at 0% 100%,
+                    rgba(139, 168, 136, 0.5) 0%,
+                    transparent 60%
+                ); /* Sage */
+        filter: blur(80px);
+        animation: subtle-shift 30s ease-in-out infinite alternate;
+        opacity: 1;
     }
-  }
 
-  @keyframes sparkle {
-    0% {
-      opacity: 0;
-      transform: scale(0.5) translate(0, 0);
+    /*
+    Adds a static film grain texture.
+    This grounds the floaty gradients and gives it a high-quality paper/cardstock feel.
+  */
+    .noise-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.07;
+        pointer-events: none;
+        z-index: 1;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
     }
-    40% {
-      opacity: 0.5; /* Lowered max opacity */
-      transform: scale(1) translate(20px, -20px);
+
+    @keyframes subtle-shift {
+        0% {
+            transform: translate(0, 0) scale(1);
+        }
+        100% {
+            transform: translate(-2%, -2%) scale(1.05);
+        }
     }
-    100% {
-      opacity: 0;
-      transform: scale(1.2) translate(-10px, 10px);
-    }
-  }
 </style>
