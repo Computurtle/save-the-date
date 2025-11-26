@@ -1,49 +1,73 @@
 ---
-import '../styles/vars.css';
-import '../styles/base.css';
-import '../styles/utilities.css';
-import Background from '../components/Background.astro';
+import "../styles/vars.css";
+import "../styles/base.css";
+import "../styles/utilities.css";
+import Background from "../components/Background.astro";
+
+const title = "Josh & Lina's Wedding";
+const description =
+    "Join us to celebrate our wedding in Margaret River! October 14-16, 2026.";
+const image = new URL("/us.jpg", Astro.site || Astro.url.origin).href;
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Save The Date</title>
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Dancing+Script:wght@400;500;600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
-		<script is:inline>
-			// Check if user has visited in this session
-			if (!sessionStorage.getItem('visited')) {
-				document.documentElement.classList.add('first-visit');
-				sessionStorage.setItem('visited', 'true');
-			}
-		</script>
-	</head>
-	<body>
-		<Background />
-		<main class="main-content">
-			<slot />
-		</main>
-	</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="generator" content={Astro.generator} />
+        <title>{title}</title>
+        <meta name="description" content={description} />
+
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={Astro.url} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={image} />
+
+        <!-- Twitter -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content={Astro.url} />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={image} />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Dancing+Script:wght@400;500;600&family=Outfit:wght@300;400;500;600&display=swap"
+            rel="stylesheet"
+        />
+        <script is:inline>
+            // Check if user has visited in this session
+            if (!sessionStorage.getItem("visited")) {
+                document.documentElement.classList.add("first-visit");
+                sessionStorage.setItem("visited", "true");
+            }
+        </script>
+    </head>
+    <body>
+        <Background />
+        <main class="main-content">
+            <slot />
+        </main>
+    </body>
 </html>
 
 <style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-	}
+    html,
+    body {
+        margin: 0;
+        width: 100%;
+    }
 
-	.main-content {
-		width: 100%;
-		max-width: var(--max-width-content);
-		margin: 0 auto;
-		padding: 0 var(--space-6); /* Ensure padding on small screens */
-		padding-top: 8rem; /* Account for fixed header */
-	}
+    .main-content {
+        width: 100%;
+        max-width: var(--max-width-content);
+        margin: 0 auto;
+        padding: 0 var(--space-6); /* Ensure padding on small screens */
+        padding-top: 8rem; /* Account for fixed header */
+    }
 </style>
